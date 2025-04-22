@@ -1,13 +1,8 @@
 <template>
-    
+  <div>
+    <NuxtRouteAnnouncer />
+    <NuxtPage />
+    <NuxtLink to="/login">Already have an account? Login</NuxtLink><br>
+    <NuxtLink to="/register">REGISTER</NuxtLink>
+  </div>
 </template>
-
-<style scoped>
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Manrope', sans-serif;
-}
-
-* {
-    font-family: 'Inter', sans-serif;
-}
-</style>

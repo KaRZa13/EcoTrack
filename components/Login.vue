@@ -6,9 +6,9 @@
 const client = useSupabaseClient();
 const router = useRouter();
 
-const email = ref("");
-const password = ref(null);
-const errorMsg = ref(null);
+const email = ref<string>("");
+const password = ref<string>("");
+const errorMsg = ref<string>("");
 
 async function signIn() {
   try {

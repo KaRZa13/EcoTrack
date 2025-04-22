@@ -2,6 +2,7 @@
     <MainLogo/>
     <MainLogo fill="#F7F9F5"/>
     <FavLogo/>
+  <NuxtLink to="/test"></NuxtLink>
 </template>
 
 <script setup lang="ts">

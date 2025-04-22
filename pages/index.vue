@@ -1,7 +1,4 @@
 <template>
-    <MainLogo/>
-    <MainLogo fill="#F7F9F5"/>
-    <FavLogo/>
   <NuxtLink to="/login">Se log t'as vu</NuxtLink>
 </template>
 
@@ -11,6 +8,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 * {
-    font-family: 'Inter', sans-serif;
+  font-family: 'Inter', sans-serif;
 }
 </style>

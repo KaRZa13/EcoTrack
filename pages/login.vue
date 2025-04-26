@@ -45,7 +45,7 @@ const signIn = async () => {
     if (error) {
       errorMsg.value = error.message
     } else {
-      router.push("/index")
+      router.push("/")
     }
   } catch (error) {
     errorMsg.value = "an error occurred during sign-in"

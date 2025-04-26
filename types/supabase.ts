@@ -11,3 +11,16 @@ export interface Categories {
     }
   }
 }
+
+export interface Company {
+  public: {
+    Tables: {
+      'company': {
+        Row: {
+          id: number
+          name: string
+        }
+      }
+    }
+  }
+}

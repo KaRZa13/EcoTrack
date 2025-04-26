@@ -29,6 +29,11 @@
         </div>
         <form @submit.prevent="signUp" class="space-y-4 pt-4">
           <div class="form-group">
+            First name
+            <input v-model="name" type="name" placeholder="First name" required
+              class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-300" />
+          </div>
+          <div class="form-group">
             Email
             <input v-model="email" type="email" placeholder="Email" required
               class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-300" />
@@ -80,6 +85,14 @@
         <NuxtLink to="/login" class="block text-center text-gray-500 mt-4">
           Already have an account? <span class="underline">Sign in</span>
         </NuxtLink>
+        <form @submit.prevent="fetchCompanyCode" class="space-y-4 pt-4">
+          <button type="submit"
+          class="w-full bg-black text-white py-2 rounded-md border cursor-pointer hover:bg-white1 hover:border-gray-600 hover:text-black transition">
+            Sign up
+          </button>
+          <p v-if="errorMsg" class="text-red-500 text-sm mt-2">{{ errorMsg }}</p>
+          <p v-if="successMsg" class="text-green-500 text-sm mt-2">{{ successMsg }}</p>
+        </form>
       </div>
     </div>
   </div>
@@ -87,9 +100,13 @@
 
 <script setup lang="ts">
 import AddPerson from '../components/svg/AddPerson.vue'
+import type { Company } from '@/types/supabase'
+
+type CompanyId = Company['public']['Tables']['company']['Row']
 
 
 const client = useSupabaseClient()
+const name = ref<string>("")
 const email = ref<string>("")
 const password = ref<string>("")
 const codeEntreprise = ref<string>("")
@@ -109,6 +126,7 @@ const signUp = async () => {
 
   try {
     const { error } = await client.auth.signUp({
+      name: name.value,
       email: email.value,
       password: password.value,
     })
@@ -121,4 +139,28 @@ const signUp = async () => {
     errorMsg.value = error.message || "Une erreur est survenue."
   }
 }
+
+
+
+
+const fetchCompanyCode = async (): Promise<void> => {
+  const { data, error } = await client.from('company').select('*')
+
+  if (error) {
+    console.error('Erreur lors du fetch :', error)
+    return
+  }
+
+  if (!data || data.length === 0) {
+    console.warn('Aucune entreprise trouvée.')
+    return
+  }
+
+  data.forEach((row: CompanyId) => {
+    console.log(`ID: ${row.id}, Name: ${row.name}`)
+    // Add any additional logic here to process each company
+  })
+}
 </script>
+
+

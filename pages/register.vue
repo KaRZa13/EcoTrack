@@ -11,15 +11,15 @@
         <div class="max-w-xl mt-10 p-6 bg-white1 w-full rounded-lg md:block hidden">
           <div class="p-8 items-center rounded-2xl flex flex-col text-3xl font-bold gap-6 flex-1 ">
             <div class="flex self-start items-center gap-4">
-              <img src="/img/logocalculate.png" alt="Calculate" class="w-24 h-auto">
+              <img src="/img/register/logocalculate.png" alt="Calculate" class="w-24 h-auto">
               <p>Calculate</p>
             </div>
             <div class="flex self-start items-center gap-4">
-              <img src="/img/logotracker.png" alt="Tracker" class="w-24 h-auto">
+              <img src="/img/register/logotracker.png" alt="Tracker" class="w-24 h-auto">
               <p>Track</p>
             </div>
             <div class="flex self-start items-center gap-4">
-              <img src="/img/logoreduce.png" alt="Reduce" class="w-24 h-auto">
+              <img src="/img/register/logoreduce.png" alt="Reduce" class="w-24 h-auto">
               <p>Reduce</p>
             </div>
           </div>

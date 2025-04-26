@@ -3,7 +3,7 @@
 
     <div class="flex flex-col gap-6 justify-center">
       <h2 class="text-primary text-4xl font-bold">Carbon score</h2>
-      <label class="text-primary text-6xl font-bold">6,839</label>
+      <label class="text-primary text-6xl font-bold">{{ user.currentScore }}</label>
       <p class="text-black1 text-xl font-semibold">Corresponds to the number of tonnes of CO<sub>2</sub> emitted per
         year</p>
     </div>
@@ -14,7 +14,7 @@
     </div>
     <!-- <ExperienceBar /> -->
 
-    <p class="text-black1 text-xl font-semibold">You need {{ }} xp points before the next level, you can do it !</p>
+    <p class="text-black1 text-xl font-semibold">You need {{ user.nextLevel }} xp points before the next level, you can do it !</p>
 
     <hr class="bg-primary h-1 mx-8 my-6 rounded-full" />
 
@@ -29,5 +29,10 @@
 </template>
 
 <script setup lang="ts">
-
+defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+})
 </script>

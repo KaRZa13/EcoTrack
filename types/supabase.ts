@@ -12,13 +12,19 @@ export interface Categories {
   }
 }
 
-export interface Company {
+export interface Users {
   public: {
     Tables: {
-      'company': {
+      'user_profiles': {
         Row: {
-          id: number
-          name: string
+          id: string
+          firstname: string
+          xp: number
+          level: number
+          nextLevel: number
+          currentScore: number
+          bestScore: number
+          role: string
         }
       }
     }

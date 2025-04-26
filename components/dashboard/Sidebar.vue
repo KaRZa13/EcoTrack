@@ -7,24 +7,31 @@
         <img src="@/assets/avatars/fox.png" alt="PP" class="w-full rounded-full border-2 border-tertiary" />
       </div>
       <div class="text-center">
-        <h3 class="text-white1 font-bold">Sophie</h3>
-        <p class="text-white1 font-bold">Lvl 14</p>
-        <p class="text-tertiary font-semibold">Eco-low</p>
+        <h3 class="text-white1 font-bold text-3xl">{{ user?.firstname }}</h3>
+        <p class="text-white1 font-bold text-2xl">Lvl {{ user?.level }}</p>
+        <p class="text-tertiary font-semibold text-xl">Eco-low</p>
       </div>
     </div>
 
     <div class="w-full h-1/2 flex flex-col items-center justify-between p-4">
       <div class=" w-full h-full bg-secondary">
-        BADGES
+        <!-- BADGES -->
       </div>
-      <button class="w-full">
+      <NuxtLink to="/form" class="w-full cursor-pointer rounded-full hover:bg-slate-200/15 transition duration-300 ease-in-out">
         <NewFormButtonSVG />
-      </button>
+      </NuxtLink>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import FavLogo from '../svg/FavLogo.vue'
-import NewFormButtonSVG from '../svg/NewFormButtonSVG.vue';
+import NewFormButtonSVG from '../svg/NewFormButtonSVG.vue'
+
+defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
+})
 </script>

@@ -51,11 +51,11 @@ const signUp = async () => {
   }
 
   try {
-    const { data, error } = await client.auth.signUp({
+    const { error } = await client.auth.signUp({
       email: email.value,
       password: password.value,
     })
-    if (error) {
+    if (DataTransfer,error) {
       errorMsg.value = error.message
     } else {
       successMsg.value = "Vérifiez votre email pour le lien de confirmation."

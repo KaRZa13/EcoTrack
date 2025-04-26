@@ -79,8 +79,7 @@
               </p>
             </label>
           </div>
-          <button type="submit"
-            class="w-full bg-black text-white py-2 rounded-md border cursor-pointer hover:bg-white1 hover:border-gray-600 hover:text-black transition">
+          <button type="submit" class="w-full bg-black text-white py-2 rounded-md border cursor-pointer hover:bg-white1 hover:border-gray-600 hover:text-black transition">
             Sign up
           </button>
           <p v-if="errorMsg" class="text-red-500 text-sm mt-2">{{ errorMsg }}</p>
@@ -98,6 +97,7 @@
           <p v-if="successMsg" class="text-green-500 text-sm mt-2">{{ successMsg }}</p>
         </form> -->
       </div>
+
     </div>
   </div>
 </template>
@@ -120,10 +120,8 @@ const confirmPassword = ref<string>("")
 const errorMsg = ref<string>("")
 const successMsg = ref<string>("")
 
-const signUp = async () => {
-  errorMsg.value = ""
-  successMsg.value = ""
 
+const signUp = async () => {
   if (password.value !== confirmPassword.value) {
     errorMsg.value = "Les mots de passe ne correspondent pas."
     return

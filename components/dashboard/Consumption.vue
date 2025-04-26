@@ -1,7 +1,7 @@
 <template>
   <div class="w-full h-full flex flex-col p-4">
     <h2 class="text-primary text-4xl font-bold">My consumption</h2>
-    <div class="w-full h-full flex flex-col gap-2 overflow-auto overflow-x-hidden">
+    <div class="w-full h-full flex flex-col gap-2 overflow-x-hidden">
       <div v-for="category in categories" class="w-full flex flex-col border p-4 rounded-2xl">
         <h3 class="text-2xl font-bold text-black1">
           {{ category }}

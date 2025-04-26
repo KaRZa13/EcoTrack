@@ -6,22 +6,26 @@
     </div>
     <!-- Formulaire d'inscription -->
     <div class="w-full rounded-lg mt-10 p-6 flex flex-col justify-center items-center md:flex-row gap-8 md:gap-12 max-w-4xl ">
-      <div class="max-w-xl mt-10 p-6 bg-white1 w-full rounded-lg">
+      
+      <!-- Calculate Track Reduce -->
+      <div class="max-w-xl mt-10 p-6 bg-white1 w-full rounded-lg md:block hidden">
         <div class="p-8 items-center rounded-2xl flex flex-col text-3xl font-bold gap-6 flex-1 ">
           <div class="flex self-start items-center gap-4">
-            <img src="../public/img/logocalculate.png" alt="Calculate">
+            <img src="/img/logocalculate.png" alt="Calculate" class="w-24 h-auto">
             <p>Calculate</p>
           </div>
           <div class="flex self-start items-center gap-4">
-            <img src="../public/img/logotracker.png" alt="Tracker">
+            <img src="/img/logotracker.png" alt="Tracker" class="w-24 h-auto">
             <p>Track</p>
           </div>
           <div class="flex self-start items-center gap-4">
-            <img src="../public/img/logoreduce.png" alt="Reduce">
+            <img src="/img/logoreduce.png" alt="Reduce" class="w-24 h-auto">
             <p>Reduce</p>
           </div>
         </div>
       </div>
+
+      <!-- Form -->
       <div class="max-w-xl mx-auto mt-10 p-6 bg-white1 border border-gray-300 w-full rounded-lg">
         <div class="flex flex-col items-center justify-center mb-4">
           <AddPerson class="w-20 h-20" />

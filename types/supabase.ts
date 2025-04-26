@@ -11,3 +11,22 @@ export interface Categories {
     }
   }
 }
+
+export interface Users {
+  public: {
+    Tables: {
+      'user_profiles': {
+        Row: {
+          id: string
+          firstname: string
+          xp: number
+          level: number
+          nextLevel: number
+          currentScore: number
+          bestScore: number
+          role: string
+        }
+      }
+    }
+  }
+}

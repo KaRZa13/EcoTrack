@@ -2,7 +2,7 @@
   <div class="w-screen h-screen flex p-4 bg-white1 gap-8 overflow-y-auto">
     <!-- Sidebar -->
     <div class="md:w-1/10 md:h-full w-1/4">
-      <Sidebar />
+      <Sidebar :user="user" />
     </div>
 
     <!-- Dashboard -->
@@ -13,7 +13,7 @@
 
         <!-- Score -->
         <div class="md:w-1/3 h-full md:h-full bg-card rounded-2xl">
-          <Score />
+          <Score :user="user" />
         </div>
 
         <!-- Tips -->
@@ -55,4 +55,37 @@ import Ranking from './dashboard/Ranking.vue'
 import Graph from './dashboard/Graph.vue'
 import Consumption from './dashboard/Consumption.vue'
 
+import type { Users } from '@/types/supabase'
+
+const client = useSupabaseClient<Users>()
+
+const user = ref<Users['public']['Tables']['user_profiles']['Row'] | Record<string, any>>({})
+
+const fetchCurrentUserProfile = async (): Promise<void> => {
+  const { data: userAuth, error: userError } = await client.auth.getUser()
+
+  if (userError || !userAuth?.user) {
+    console.error('Error fetching auth user:', userError)
+    return
+  }
+
+  const userId = userAuth.user.id
+
+  const { data, error } = await client
+    .from('user_profiles')
+    .select('*')
+    .eq('id', userId)
+    .single() 
+
+  if (error) {
+    console.error('Error fetching user profile:', error)
+    return
+  }
+
+  user.value = data
+}
+
+onMounted(async () => {
+  await fetchCurrentUserProfile()
+})
 </script>

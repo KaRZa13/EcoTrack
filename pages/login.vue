@@ -41,11 +41,11 @@ const signIn = async () => {
     const { error } = await client.auth.signInWithPassword({
       email: email.value,
       password: password.value,
-    });
+    })
     if (error) {
       errorMsg.value = error.message
     } else {
-      router.push("/dashboard")
+      router.push("/index")
     }
   } catch (error) {
     errorMsg.value = "an error occurred during sign-in"

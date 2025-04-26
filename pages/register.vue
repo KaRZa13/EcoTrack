@@ -35,6 +35,8 @@
 import AddPerson from '../components/svg/AddPerson.vue'
 
 const client = useSupabaseClient()
+const router = useRouter()
+
 const email = ref<string>("")
 const password = ref<string>("")
 const confirmPassword = ref<string>("")
@@ -51,7 +53,7 @@ const signUp = async () => {
   }
 
   try {
-    const { data, error } = await client.auth.signUp({
+    const { error } = await client.auth.signUp({
       email: email.value,
       password: password.value,
     })
@@ -59,6 +61,9 @@ const signUp = async () => {
       errorMsg.value = error.message
     } else {
       successMsg.value = "Vérifiez votre email pour le lien de confirmation."
+      nextTick(() => {
+        router.push("/login")
+      })
     }
   } catch (error: any) {
     errorMsg.value = error.message || "Une erreur est survenue."

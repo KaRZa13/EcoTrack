@@ -6,8 +6,16 @@ export default defineNuxtConfig({
   modules: ['@nuxt/fonts', '@nuxt/icon', '@nuxtjs/supabase'],
   css: ['~/assets/css/main.css'],
   supabase: {
-    redirect: false,
+    redirect: true,
+    redirectOptions: {
+      login: '/login',
+      callback: '/index',
+      exclude: ['/register'],
+      saveRedirectToCookie: true,
+    }
+  
   },
+  
   vite: {
     plugins: [
       tailwindcss(),

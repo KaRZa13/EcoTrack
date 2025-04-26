@@ -1,9 +1,17 @@
 @import "tailwindcss";
 
 @theme {
-    --bg-primary: #5E2BFF;
-    --bg-secondary: #06A77D;
-    --bg-tertiary: #FFFC31;
-    --bg-black: #080808;
-    --bg-white: #F7F9F5
+    --color-primary: #5E2BFF;
+    --color-secondary: #06A77D;
+    --color-tertiary: #FFFC31;
+    --color-black1: #080808;
+    --color-white1: #F7F9F5
+}
+
+h1 {
+    font-family: 'Manrope', sans-serif;
+}
+
+* {
+    font-family: 'Inter', sans-serif;
 }

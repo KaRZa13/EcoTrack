@@ -13,6 +13,7 @@ export default defineNuxtConfig({
       exclude: ['/login', '/register', '/forgot-password'],
     }
   },
+  
   vite: {
     plugins: [
       tailwindcss(),

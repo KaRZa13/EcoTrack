@@ -75,7 +75,7 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
     .from('user_profiles')
     .select('*')
     .eq('id', userId)
-    .single() 
+    .single()
 
   if (error) {
     console.error('Error fetching user profile:', error)

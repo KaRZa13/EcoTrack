@@ -8,15 +8,13 @@
         year</p>
     </div>
 
-    <hr class="bg-primary h-1 mx-8 my-6 rounded-full" />
-    <div>
+    <hr class="bg-primary h-1 mx-8 my-4 rounded-full" />
 
-    </div>
-    <!-- <ExperienceBar /> -->
+    <ExperienceBar :user="user"/>
 
     <p class="text-black1 text-xl font-semibold">You need {{ user.nextLevel }} xp points before the next level, you can do it !</p>
 
-    <hr class="bg-primary h-1 mx-8 my-6 rounded-full" />
+    <hr class="bg-primary h-1 mx-8 my-4 rounded-full" />
 
     <div class="flex flex-col gap-6 justify-center">
       <p class="text-black1 text-xl font-semibold">Last questionnaire done : {{ }}</p>
@@ -29,6 +27,8 @@
 </template>
 
 <script setup lang="ts">
+import ExperienceBar from '../elements/ExperienceBar.vue';
+
 defineProps({
   user: {
     type: Object,

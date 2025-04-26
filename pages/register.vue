@@ -11,15 +11,15 @@
       <div class="max-w-xl mt-10 p-6 bg-white1 w-full rounded-lg md:block hidden">
         <div class="p-8 items-center rounded-2xl flex flex-col text-3xl font-bold gap-6 flex-1 ">
           <div class="flex self-start items-center gap-4">
-            <img src="/img/logocalculate.png" alt="Calculate" class="w-24 h-auto">
+            <img src="/img/register/logocalculate.png" alt="Calculate" class="w-24 h-auto">
             <p>Calculate</p>
           </div>
           <div class="flex self-start items-center gap-4">
-            <img src="/img/logotracker.png" alt="Tracker" class="w-24 h-auto">
+            <img src="/img/register/logotracker.png" alt="Tracker" class="w-24 h-auto">
             <p>Track</p>
           </div>
           <div class="flex self-start items-center gap-4">
-            <img src="/img/logoreduce.png" alt="Reduce" class="w-24 h-auto">
+            <img src="/img/register/logoreduce.png" alt="Reduce" class="w-24 h-auto">
             <p>Reduce</p>
           </div>
         </div>
@@ -89,14 +89,14 @@
         <NuxtLink to="/login" class="block text-center text-gray-500 mt-4">
           Already have an account? <span class="underline">Sign in</span>
         </NuxtLink>
-        <form @submit.prevent="fetchCompanyCode" class="space-y-4 pt-4">
+        <!-- <form @submit.prevent="fetchCompanyCode" class="space-y-4 pt-4">
           <button type="submit"
           class="w-full bg-black text-white py-2 rounded-md border cursor-pointer hover:bg-white1 hover:border-gray-600 hover:text-black transition">
             Sign up
           </button>
           <p v-if="errorMsg" class="text-red-500 text-sm mt-2">{{ errorMsg }}</p>
           <p v-if="successMsg" class="text-green-500 text-sm mt-2">{{ successMsg }}</p>
-        </form>
+        </form> -->
       </div>
     </div>
   </div>
@@ -109,13 +109,14 @@ import type { Company } from '@/types/supabase'
 type CompanyId = Company['public']['Tables']['company']['Row']
 
 
-const client = useSupabaseClient()
+const client = useSupabaseClient<Company>()
+
 const name = ref<string>("")
 const email = ref<string>("")
 const password = ref<string>("")
 const codeEntreprise = ref<string>("")
-
 const confirmPassword = ref<string>("")
+
 const errorMsg = ref<string>("")
 const successMsg = ref<string>("")
 
@@ -130,7 +131,7 @@ const signUp = async () => {
 
   try {
     const { error } = await client.auth.signUp({
-      name: name.value,
+      // firstname: name.value,
       email: email.value,
       password: password.value,
     })
@@ -144,27 +145,33 @@ const signUp = async () => {
   }
 }
 
+const fetchCurrentUserProfile = async (): Promise<void> => {
+  const { data: userAuth, error: userError } = await client.auth.getUser()
 
+  if (userError || !userAuth?.user) {
+    console.error('Error fetching auth user:', userError)
+    return
+  }
 
+  const userId = userAuth.user.id
 
-const fetchCompanyCode = async (): Promise<void> => {
-  const { data, error } = await client.from('company').select('*')
+  const { data, error } = await client
+    .from('user_profiles')
+    .select('*')
+    .eq('id', userId)
+    .single() 
 
   if (error) {
-    console.error('Erreur lors du fetch :', error)
+    console.error('Error fetching user profile:', error)
     return
   }
 
-  if (!data || data.length === 0) {
-    console.warn('Aucune entreprise trouvée.')
-    return
-  }
-
-  data.forEach((row: CompanyId) => {
-    console.log(`ID: ${row.id}, Name: ${row.name}`)
-    // Add any additional logic here to process each company
-  })
+  // user.value = data
 }
+
+onMounted(async () => {
+  await fetchCurrentUserProfile()
+})
 </script>
 
 

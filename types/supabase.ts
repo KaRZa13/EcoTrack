@@ -30,3 +30,16 @@ export interface Users {
     }
   }
 }
+
+export interface Company {
+  public: {
+    Tables: {
+      'company': {
+        Row: {
+          id: string
+          name: string
+        }
+      }
+    }
+  }
+}

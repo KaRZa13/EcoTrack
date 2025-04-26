@@ -1,41 +1,33 @@
 <template>
-  <div class="w-sreen h-screen flex items-center justify-center">
-
-    <!-- <form @submit.prevent="signIn" class="w-1/4 h-auto p-5 bg-slate-200 rounded-lg border border-bg-slate-300">
-      <div class="flex flex-col items-center justify-center">
-        <Icon name="ic:round-person" class="w-32 h-32 text-slate-500" />
-        <h1>Login</h1>
+  <div class="w-screen h-screen flex items-center justify-center">
+    <form @submit.prevent="signIn" class="w-1/4 h-auto p-5 bg-slate-200 rounded-lg border border-slate-300">
+      <div class="flex flex-col items-center justify-center mb-4">
+        <Person class="w-10 h-10"/>
+        <h1 class="text-xl font-bold">Login</h1>
       </div>
-      <div class="">
-        <div class="mb-4">
-          <label>Email:</label>
-          <input type="email" v-model="email" placeholder="Enter your email" required class="border rounded p-2 w-full" />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input type="password" v-model="password" placeholder="Enter your password" required
-            class="border rounded p-2 w-full" />
-        </div>
+      <div class="mb-4">
+        <label for="email" class="block text-sm font-medium text-gray-700">Email:</label>
+        <input id="email" type="email" v-model="email" placeholder="Enter your email" required
+          class="border rounded p-2 w-full" />
       </div>
-      <div v-if="errorMsg" class="error-message">{{ errorMsg }}</div>
-
-      <button type="submit" class="submit-button">Sign In</button>
-      <NuxtLink to="/register" class="signup-redirect">Don't have an account? Sign Up</NuxtLink>
-    </form> -->
-
-    <form action="">
-      <div>
-        <!-- DIV LOGIN + IMAGES -->
-        <div class="">
-          <Icon name="ic:round-person" class="text-slate-500" />
-        </div>
+      <div class="mb-4">
+        <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
+        <input id="password" type="password" v-model="password" placeholder="Enter your password" required
+          class="border rounded p-2 w-full" />
       </div>
+      <div v-if="errorMsg" class="text-red-500 text-sm mb-4">{{ errorMsg }}</div>
+      <button type="submit" class="w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">
+        Sign In
+      </button>
+      <NuxtLink to="/register" class="block text-center text-blue-500 mt-4 hover:underline">
+        Don't have an account? Sign Up
+      </NuxtLink>
     </form>
-
   </div>
 </template>
 
 <script setup lang="ts">
+import Person from './svg/Person.vue'
 const client = useSupabaseClient()
 const router = useRouter()
 
@@ -59,3 +51,13 @@ const signIn = async () => {
   }
 }
 </script>
+
+<style scoped>
+h1 {
+  font-family: 'Manrope', sans-serif;
+}
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+</style>

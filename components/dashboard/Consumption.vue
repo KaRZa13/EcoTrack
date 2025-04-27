@@ -1,12 +1,12 @@
 <template>
   <div class="w-full h-full flex flex-col p-4">
     <h2 class="text-primary text-4xl font-bold">My consumption</h2>
-    <div class="w-full h-full flex flex-col gap-2 overflow-x-hidden">
-      <div v-for="category in categories" class="w-full flex flex-col border p-4 rounded-2xl">
+    <div class="w-full h-full flex flex-col gap-4 overflow-x-hidden p-4">
+      <div v-for="category in categories" class="w-full flex flex-col border p-4 rounded-2xl gap-2">
         <h3 class="text-2xl font-bold text-black1">
-          {{ category }}
+          {{ category.name }}
         </h3>
-
+        <ConsumptionBar :user="user"/>
       </div>
     </div>
   </div>
@@ -15,9 +15,11 @@
 <script setup lang="ts">
 import type { Categories } from '@/types/supabase'
 
-const client = useSupabaseClient<Categories>()
+import ConsumptionBar from '../elements/ConsumptionBar.vue'
 
-const categories = ref<string[]>([])
+const client = useSupabaseClient()
+
+const categories = ref<Categories[]>([])
 
 const fetchCategories = async (): Promise<void> => {
   const { data, error } = await client.from('categories').select('*')
@@ -27,10 +29,17 @@ const fetchCategories = async (): Promise<void> => {
     return
   }
 
-  categories.value = data?.map((category) => category.name) || []
+  categories.value = data || []
 }
 
 onMounted(async () => {
   await fetchCategories()
+})
+
+defineProps({
+  user: {
+    type: Object,
+    required: true,
+  },
 })
 </script>

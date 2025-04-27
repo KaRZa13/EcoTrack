@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen flex p-4 bg-white1 gap-8 overflow-y-auto">
+  <div class="w-screen h-screen flex p-4 bg-white1 gap-8 overflow-hidden">
     <!-- Sidebar -->
     <div class="md:w-1/10 md:h-full w-1/4">
       <Sidebar :user="user" />
@@ -37,7 +37,7 @@
 
         <!-- Consommation -->
         <div class="md:w-1/2 h-full bg-card rounded-2xl">
-          <Consumption />
+          <Consumption :user="user"/>
         </div>
 
       </div>
@@ -60,16 +60,17 @@ import type { Users } from '@/types/supabase'
 const client = useSupabaseClient<Users>()
 
 const user = ref<Users[]>([])
+const user = ref<Users[]>([])
 
 const fetchCurrentUserProfile = async (): Promise<void> => {
-  const { data: userAuth, error: userError } = await client.auth.getUser();
+  const { data: userAuth, error: userError } = await client.auth.getUser()
 
   if (userError || !userAuth?.user) {
-    console.error('Error fetching auth user:', userError);
-    return;
+    console.error('Error fetching auth user:', userError)
+    return
   }
 
-  const userId = userAuth.user.id;
+  const userId = userAuth.user.id
 
   const { data, error } = await client
     .from('user_profiles')
@@ -79,19 +80,18 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
         name
       )    `)
     .eq('id', userId)
-    .single();
+    .single()
 
   if (error) {
-    console.error('Error fetching user profile:', error);
-    return;
+    console.error('Error fetching user profile:', error)
+    return
   }
 
-  user.value = data;
-  
+  user.value = data
+
 }
 
-
-onMounted( () => {
-   fetchCurrentUserProfile()
+onMounted(() => {
+  fetchCurrentUserProfile()
 })
 </script>

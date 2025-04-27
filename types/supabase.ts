@@ -16,10 +16,15 @@ export interface Users {
   company_code: string
 }
 
-export interface CompanySidebar
- {
+export interface Company {
   id: string
   name: string
+}
+
+export interface Companies {
+  id: string
+  name: string
+  currentScore: number
 }
 
 export interface History {

@@ -25,6 +25,7 @@ export interface Users {
           currentScore: number
           bestScore: number
           role: string
+          company_code: string
         }
       }
     }

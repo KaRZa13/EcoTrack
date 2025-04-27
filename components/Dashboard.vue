@@ -62,28 +62,35 @@ const client = useSupabaseClient<Users>()
 const user = ref<Users['public']['Tables']['user_profiles']['Row'] | Record<string, any>>({})
 
 const fetchCurrentUserProfile = async (): Promise<void> => {
-  const { data: userAuth, error: userError } = await client.auth.getUser()
+  const { data: userAuth, error: userError } = await client.auth.getUser();
 
   if (userError || !userAuth?.user) {
-    console.error('Error fetching auth user:', userError)
-    return
+    console.error('Error fetching auth user:', userError);
+    return;
   }
 
-  const userId = userAuth.user.id
+  const userId = userAuth.user.id;
 
   const { data, error } = await client
     .from('user_profiles')
-    .select('*')
+    .select(`
+      *,
+      company:company_code (
+        name
+      )
+    `)
     .eq('id', userId)
-    .single()
+    .single();
 
   if (error) {
-    console.error('Error fetching user profile:', error)
-    return
+    console.error('Error fetching user profile:', error);
+    return;
   }
 
-  user.value = data
+  user.value = data;
+  
 }
+
 
 onMounted(async () => {
   await fetchCurrentUserProfile()

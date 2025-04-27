@@ -2,7 +2,7 @@
   <div class="h-full w-full bg-secondary rounded-2xl flex flex-col items-center justify-between">
     <div class="w-full h-1/2 flex flex-col justify-between p-4">
       <FavLogo stroke="#F7F9F5" />
-      <h2 class="w-full text-tertiary font-bold text-center">ENTREPRISE</h2>
+      <h2 class="w-full text-tertiary font-bold text-center">{{ user?.company?.name }}</h2>
       <div class="w-full">
         <img src="@/assets/avatars/fox.png" alt="PP" class="w-full rounded-full border-2 border-tertiary" />
       </div>

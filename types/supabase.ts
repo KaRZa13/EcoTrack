@@ -31,3 +31,9 @@ export interface History {
   historyDate: string
 
 }
+
+export interface Tips {
+  id: number
+  content: string
+  categoryMinScore: number
+}

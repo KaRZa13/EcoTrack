@@ -2,7 +2,7 @@
   <div class="w-full h-full flex flex-col p-4">
     <div class="w-full flex justify-between items-center">
       <div class="w-full flex flex-col gap-2">
-        <h2 class="text-primary text-4xl font-bold">{{ selectedGraphFilter }} consumption</h2>
+        <h2 class="text-primary text-4xl font-black">{{ selectedGraphFilter }} consumption</h2>
         <p class="text-primary text-3xl font-bold">in tonnes</p>
       </div>
 

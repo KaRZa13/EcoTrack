@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full flex flex-col p-4">
-    <h2 class="text-primary text-4xl font-bold">Ranking</h2>
+    <h2 class="text-primary text-4xl font-black">Ranking</h2>
 
     <!-- Filter -->
     <div class="flex justify-center items-center">
@@ -27,13 +27,13 @@
       <!-- VFOR sur les user de l'entreprise -->
       <div v-for="(user, index) in users" :key="index" v-if="selectedFilter === 'internal'"
         class="w-full flex flex-col gap-2">
-        <div class="w-full flex items-center justify-between px-2">
-          <div class="flex items-center gap-4">
+        <div class="w-full flex items-center justify-between px-1">
+          <div class="flex items-center gap-2 xl:gap-4">
             <p class="w-6 font-bold text-primary text-4xl">{{ index + 1 }}</p>
             <img src="/img/avatars/lion.png" class="w-12 h-12 rounded-full border-2 border-tertiary" />
-            <p class="text-black1 font-bold">{{ user.firstname }}</p>
+            <p class="text-black1 text-xl font-extrabold">{{ user.firstname }}</p>
           </div>
-          <p class="text-black1 font-bold">{{ user.currentScore }}</p>
+          <p class="text-black1 text-2xl font-extrabold">{{ user.currentScore }}</p>
         </div>
         <hr class="bg-secondary h-1 mx-6 rounded-full" />
       </div>

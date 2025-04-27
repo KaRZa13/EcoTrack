@@ -1,6 +1,6 @@
 <template>
   <div class="w-full h-full flex flex-col p-4">
-    <h2 class="text-primary text-4xl font-bold">My consumption</h2>
+    <h2 class="text-primary text-4xl font-black">My consumption</h2>
     <div class="w-full h-full flex flex-col gap-4 overflow-x-hidden p-4">
       <div v-for="category in categories" class="w-full flex flex-col border p-4 rounded-2xl gap-2">
         <h3 class="text-2xl font-bold text-black1">

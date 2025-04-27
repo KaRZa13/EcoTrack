@@ -60,7 +60,6 @@ import type { Users } from '@/types/supabase'
 const client = useSupabaseClient<Users>()
 
 const user = ref<Users[]>([])
-const user = ref<Users[]>([])
 
 const fetchCurrentUserProfile = async (): Promise<void> => {
   const { data: userAuth, error: userError } = await client.auth.getUser()

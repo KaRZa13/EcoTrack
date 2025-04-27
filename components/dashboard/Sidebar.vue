@@ -2,13 +2,13 @@
   <div class="h-full w-full bg-secondary rounded-2xl flex flex-col items-center justify-between">
     <div class="w-full h-1/2 flex flex-col justify-between p-4">
       <FavLogo stroke="#F7F9F5" />
-      <h2 class="w-full text-tertiary font-bold text-center">ENTREPRISE</h2>
+      <h2 class="w-full text-tertiary font-bold text-center text-3xl">{{ props.user?.company?.name }}</h2>
       <div class="w-full">
-        <img src="@/assets/avatars/fox.png" alt="PP" class="w-full rounded-full border-2 border-tertiary" />
+        <img src="/img/avatars/fox.png" alt="PP" class="w-full rounded-full border-3 border-tertiary" />
       </div>
       <div class="text-center">
-        <h3 class="text-white1 font-bold text-3xl">{{ user?.firstname }}</h3>
-        <p class="text-white1 font-bold text-2xl">Lvl {{ user?.level }}</p>
+        <h3 class="text-white1 font-bold text-3xl">{{ props.user?.firstname }}</h3>
+        <p class="text-white1 font-bold text-2xl">Lvl {{ props.user?.level }}</p>
         <p class="text-tertiary font-semibold text-xl">Eco-low</p>
       </div>
     </div>
@@ -28,7 +28,7 @@
 import FavLogo from '../svg/FavLogo.vue'
 import NewFormButtonSVG from '../svg/NewFormButtonSVG.vue'
 
-defineProps({
+const props = defineProps({
   user: {
     type: Object,
     required: true,

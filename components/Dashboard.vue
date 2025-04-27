@@ -59,7 +59,7 @@ import type { Users } from '@/types/supabase'
 
 const client = useSupabaseClient<Users>()
 
-const user = ref<Users['public']['Tables']['user_profiles']['Row'] | Record<string, any>>({})
+const user = ref<Users[]>([])
 
 const fetchCurrentUserProfile = async (): Promise<void> => {
   const { data: userAuth, error: userError } = await client.auth.getUser();
@@ -77,8 +77,7 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
       *,
       company:company_code (
         name
-      )
-    `)
+      )    `)
     .eq('id', userId)
     .single();
 
@@ -92,7 +91,7 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
 }
 
 
-onMounted(async () => {
-  await fetchCurrentUserProfile()
+onMounted( () => {
+   fetchCurrentUserProfile()
 })
 </script>

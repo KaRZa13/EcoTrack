@@ -81,7 +81,7 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
     console.error('Error fetching user profile:', error)
     return
   }
-
+  
   user.value = data
 }
 

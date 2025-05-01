@@ -16,9 +16,11 @@ export interface Users {
   company_code: string
 }
 
+
 export interface Company {
   id: string
   name: string
+  currentScore: string
 }
 
 export interface Companies {

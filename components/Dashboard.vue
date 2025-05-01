@@ -23,7 +23,7 @@
 
         <!-- Ranking -->
         <div class="lg:w-1/3 h-full lg:h-full bg-card rounded-2xl">
-          <Ranking />
+          <Ranking :user="user" />
         </div>
       </div>
 
@@ -37,7 +37,7 @@
 
         <!-- Consommation -->
         <div class="lg:w-1/2 h-full bg-card rounded-2xl">
-          <Consumption :user="user"/>
+          <!-- <Consumption :user="user"/> -->
         </div>
 
       </div>
@@ -54,40 +54,32 @@ import Tips from './dashboard/Tips.vue'
 import Ranking from './dashboard/Ranking.vue'
 import Graph from './dashboard/Graph.vue'
 import Consumption from './dashboard/Consumption.vue'
-
+import axios from 'axios';
 import type { Users } from '@/types/supabase'
 
+const router = useRouter()
 const client = useSupabaseClient<Users>()
 
-const user = ref<Users[]>([])
+
+const user = ref<Users | null>(null)
 
 const fetchCurrentUserProfile = async (): Promise<void> => {
   const { data: userAuth, error: userError } = await client.auth.getUser()
 
-  if (userError || !userAuth?.user) {
-    console.error('Error fetching auth user:', userError)
-    return
-  }
+  if (userError || !userAuth?.user)
+    return console.error('Error fetching auth user:', userError)
 
   const userId = userAuth.user.id
 
-  const { data, error } = await client
-    .from('user_profiles')
-    .select(`
-      *,
-      company:company_code (
-        name
-      )    `)
-    .eq('id', userId)
-    .single()
+  try {
+    const response = await axios.get('http://localhost:3010/user', { headers: { 'userid': userId } });
 
-  if (error) {
-    console.error('Error fetching user profile:', error)
-    return
+    if (response.data)
+      user.value = response.data.user;
+
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
   }
-
-  user.value = data
-
 }
 
 onMounted(() => {

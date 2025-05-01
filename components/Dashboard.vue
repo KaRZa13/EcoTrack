@@ -37,7 +37,7 @@
 
         <!-- Consommation -->
         <div class="lg:w-1/2 h-full bg-card rounded-2xl">
-          <!-- <Consumption :user="user"/> -->
+          <Consumption :user="user"/>
         </div>
 
       </div>

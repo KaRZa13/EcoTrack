@@ -6,7 +6,7 @@
         <h3 class="text-2xl font-bold text-black1">
           {{ category.name }}
         </h3>
-        <ConsumptionBar :user="user"/>
+        <ConsumptionBar/>
       </div>
     </div>
   </div>
@@ -14,32 +14,28 @@
 
 <script setup lang="ts">
 import type { Categories } from '@/types/supabase'
+import axios from 'axios'
 
 import ConsumptionBar from '../elements/ConsumptionBar.vue'
 
-const client = useSupabaseClient()
 
 const categories = ref<Categories[]>([])
 
-const fetchCategories = async (): Promise<void> => {
-  const { data, error } = await client.from('categories').select('*')
+  const fetchCategories = async (): Promise<void> => {
+  try {
+    const response = await axios.get('http://localhost:3010/categories');
+    if (response.data) {
+      categories.value = response.data.categories;
+      console.log("🚀 ~ fetchCategories ~ categories:", categories.value)
+    }
 
-  if (error) {
-    console.error('Error fetching categories:', error)
-    return
+  } catch (error) {
+    console.error('Error fetching user profile:', error);
   }
-
-  categories.value = data || []
 }
 
 onMounted(async () => {
   await fetchCategories()
 })
 
-defineProps({
-  user: {
-    type: Object,
-    required: true,
-  },
-})
 </script>

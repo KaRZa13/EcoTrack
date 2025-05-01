@@ -91,14 +91,14 @@
   
   <script setup lang="ts">
   import AddPerson from '../components/svg/AddPerson.vue'
-  
+  import axios from 'axios'
   
   const client = useSupabaseClient()
   const email = ref<string>("")
   const password = ref<string>("")
   const codeEntreprise = ref<string>("")
-  
   const confirmPassword = ref<string>("")
+  
   const errorMsg = ref<string>("")
   const successMsg = ref<string>("")
   
@@ -110,17 +110,23 @@
     }
   
     try {
-      const { error } = await client.auth.signUp({
+      const response = await axios.post('http://localhost:3010/signup', {
         email: email.value,
         password: password.value,
       })
-      if (error) {
-        errorMsg.value = error.message
-      } else {
+      if (response.status === 201)
         successMsg.value = "Vérifiez votre email pour le lien de confirmation."
-      }
+    
     } catch (error: any) {
-      errorMsg.value = error.message || "Une erreur est survenue."
+      if (axios.isAxiosError(error)) {
+        if (error.response) {
+          errorMsg.value = error.response.data.message || "An error occurred"
+        } else {
+          errorMsg.value = "Network error"
+        }
+      } else {
+        errorMsg.value = "An unexpected error occurred"
+      }
     }
   }
-  </script>
+</script>

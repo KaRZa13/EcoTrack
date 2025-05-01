@@ -57,10 +57,7 @@ import Consumption from './dashboard/Consumption.vue'
 import axios from 'axios';
 import type { Users } from '@/types/supabase'
 
-const router = useRouter()
 const client = useSupabaseClient<Users>()
-
-
 const user = ref<Users | null>(null)
 
 const fetchCurrentUserProfile = async (): Promise<void> => {

@@ -50,12 +50,14 @@ const router = useRouter()
 // Fonction de connexion
 const signIn = async () => {
   try {
+    console.log(password.value);
     const response = await axios.post('http://localhost:3010/login', {
       email: email.value,
       password: password.value,
     })
 
     if (response.status === 200) {
+      console.log(response.data)
       router.push("/") 
     }
   } catch (error) {

@@ -45,31 +45,56 @@ const email = ref<string>("")
 const password = ref<string>("")
 const errorMsg = ref<string>("")
 const router = useRouter()
+const client = useSupabaseClient()
 
 
-// Fonction de connexion
 const signIn = async () => {
   try {
-    console.log(password.value);
-    const response = await axios.post('http://localhost:3010/login', {
+    const { data, error } = await client.auth.signInWithPassword({
       email: email.value,
       password: password.value,
-    })
+    });
 
-    if (response.status === 200) {
-      console.log(response.data)
-      router.push("/") 
+    if (error) {
+      errorMsg.value = error.message;
+    } else {
+      // Attendez que la session soit prête
+      const { data: session } = await client.auth.getSession();
+      if (session) {
+        console.log("🚀 ~ signIn ~ session:", session)
+        router.push("/");
+      } else {
+        errorMsg.value = "Session not established";
+      }
     }
   } catch (error) {
-    if (axios.isAxiosError(error)) {
-      if (error.response) {
-        errorMsg.value = error.response.data.message || "An error occurred"
-      } else {
-        errorMsg.value = "Network error"
-      }
-    } else {
-      errorMsg.value = "An unexpected error occurred"
-    }
+    errorMsg.value = "An error occurred during sign-in";
   }
-}
+};
+
+// Fonction de connexion
+// const signIn = async () => {
+//   try {
+//     console.log(password.value);
+//     const response = await axios.post('http://localhost:3010/login', {
+//       email: email.value,
+//       password: password.value,
+//     })
+
+//     if (response.status === 200) {
+//       console.log(response.data)
+//       router.push("/") 
+//     }
+//   } catch (error) {
+//     if (axios.isAxiosError(error)) {
+//       if (error.response) {
+//         errorMsg.value = error.response.data.message || "An error occurred"
+//       } else {
+//         errorMsg.value = "Network error"
+//       }
+//     } else {
+//       errorMsg.value = "An unexpected error occurred"
+//     }
+//   }
+// }
 </script>

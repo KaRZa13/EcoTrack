@@ -1,5 +1,5 @@
 # Bienvenue sur la documentation d'Ecotrack
--- 
+---
 
 ## Table des matières
 1. [Getting Started](#getting-started)

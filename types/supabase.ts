@@ -39,3 +39,16 @@ export interface Tips {
   content: string
   categoryMinScore: number
 }
+
+export interface Questions {
+  id: number
+  content: string
+  category: number
+}
+
+export interface Answers {
+  id: number
+  content: string
+  idquestion: number
+  value: number
+}

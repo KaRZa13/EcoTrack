@@ -1,4 +1,6 @@
 const cors = require('cors');
+const path = require('path');
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const { createClient } = require('@supabase/supabase-js');
@@ -42,6 +44,70 @@ app.get('/user', async (req, res) => {
     res.status(500).json({ error: 'Unexpected error occurred' });
   }
 });
+
+app.get('/form', async (req, res) => {
+  try {
+    const categoryName = req.headers['category'];
+    if (!categoryName)
+      return res.status(400).json({ error: 'Missing category header' });
+
+    const { data: category, error: categoryError } = await supabase
+      .from('categories')
+      .select('*')
+      .eq('name', categoryName)
+      .single();
+
+    if (categoryError || !category) {
+      console.error('Category error:', categoryError?.message || 'Category not found');
+      return res.status(500).json({ error: categoryError?.message || 'Category not found' });
+    }
+
+    const { data: questionsWithAnswers, error: questionsError } = await supabase
+      .from('questions')
+      .select(`
+        *,
+        answers (
+          id,
+          content,
+          idquestion,
+          value
+        )
+      `)
+      .eq('category', category.id)
+      .order('id', { ascending: true })
+      .limit(10);
+
+    if (questionsError) {
+      console.error('Questions error:', questionsError.message);
+      return res.status(500).json({ error: questionsError.message });
+    }
+
+    res.status(200).json({
+      message: 'Questions and answers fetched properly',
+      data: questionsWithAnswers
+    });
+
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: 'Unexpected error occurred' });
+  }
+});
+
+app.post('/form', async (req, res) => {
+  const data = req.body;
+
+  const filename = `reponses_${Date.now()}.json`;
+  const filePath = path.join(__dirname, filename); 
+
+  fs.writeFile(filePath, JSON.stringify(data), (err) => {
+    if (err) {
+      console.error('Error writing file:', err);
+      return res.status(500).json({ error: 'Error writing file' });
+    }
+    res.status(200).json({ message: 'File written successfully', filePath });
+  });
+
+})
 
 app.get('/company', async (req, res) => {
   try {

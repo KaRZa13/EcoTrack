@@ -11,29 +11,17 @@
       <form @submit.prevent="signIn" class="space-y-4 pt-4">
         <div class="form-group">
           Email
-          <input
-            v-model="email"
-            type="email"
-            placeholder="Email"
-            required
-            class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-300"
-          />
+          <input v-model="email" type="email" placeholder="Email" required
+            class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-300" />
         </div>
         <div class="form-group pt-2">
           Password
-          <input
-            v-model="password"
-            type="password"
-            placeholder="Password"
-            required
-            class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-300"
-          />
+          <input v-model="password" type="password" placeholder="Password" required
+            class="w-full mt-1 px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-gray-300" />
         </div>
-        
-        <button
-          type="submit"
-          class="w-full bg-black text-white py-2 rounded-md border cursor-pointer hover:bg-white1 hover:border-gray-600 hover:text-black transition"
-        >
+
+        <button type="submit"
+          class="w-full bg-black text-white py-2 rounded-md border cursor-pointer hover:bg-white1 hover:border-gray-600 hover:text-black transition">
           Log in
         </button>
         <p v-if="errorMsg" class="text-red-500 text-sm mt-2">{{ errorMsg }}</p>
@@ -46,28 +34,67 @@
 </template>
 
 <script setup lang="ts">
-import Person from '../components/svg/Person.vue'
 
-const client = useSupabaseClient()
-const router = useRouter()
+import axios from 'axios';
+import { ref } from 'vue';
+//import { createHash } from 'crypto'
+import { useRouter } from 'vue-router';
+import Person from '../components/svg/Person.vue'
 
 const email = ref<string>("")
 const password = ref<string>("")
 const errorMsg = ref<string>("")
+const router = useRouter()
+const client = useSupabaseClient()
+
 
 const signIn = async () => {
   try {
-    const { error } = await client.auth.signInWithPassword({
+    const { data, error } = await client.auth.signInWithPassword({
       email: email.value,
       password: password.value,
-    })
+    });
+
     if (error) {
-      errorMsg.value = error.message
+      errorMsg.value = error.message;
     } else {
-      router.push("/")
+      // Attendez que la session soit prête
+      const { data: session } = await client.auth.getSession();
+      if (session) {
+        console.log("🚀 ~ signIn ~ session:", session)
+        router.push("/");
+      } else {
+        errorMsg.value = "Session not established";
+      }
     }
   } catch (error) {
-    errorMsg.value = "an error occurred during sign-in"
+    errorMsg.value = "An error occurred during sign-in";
   }
-}
+};
+
+// Fonction de connexion
+// const signIn = async () => {
+//   try {
+//     console.log(password.value);
+//     const response = await axios.post('http://localhost:3010/login', {
+//       email: email.value,
+//       password: password.value,
+//     })
+
+//     if (response.status === 200) {
+//       console.log(response.data)
+//       router.push("/") 
+//     }
+//   } catch (error) {
+//     if (axios.isAxiosError(error)) {
+//       if (error.response) {
+//         errorMsg.value = error.response.data.message || "An error occurred"
+//       } else {
+//         errorMsg.value = "Network error"
+//       }
+//     } else {
+//       errorMsg.value = "An unexpected error occurred"
+//     }
+//   }
+// }
 </script>

@@ -16,9 +16,11 @@ export interface Users {
   company_code: string
 }
 
+
 export interface Company {
   id: string
   name: string
+  currentScore: string
 }
 
 export interface Companies {
@@ -36,4 +38,17 @@ export interface Tips {
   id: number
   content: string
   categoryMinScore: number
+}
+
+export interface Questions {
+  id: number
+  content: string
+  category: number
+}
+
+export interface Answers {
+  id: number
+  content: string
+  idquestion: number
+  value: number
 }

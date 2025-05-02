@@ -21,7 +21,7 @@ Lorsque le formulaire est correctement rempli, il appelle la fonction `signIn()`
 
 ### Authentification et Redirection
 
-Le middleware va effectuer les étapes suivantes :
+Suite à la réponse du middleware, on fait les étapes suivantes :
 
 1. **Validation de la connexion** : Si les informations sont correctes, l'utilisateur est authentifié.
 2. **Redirection** : Si l'authentification réussit, l'utilisateur est redirigé vers le tableau de bord.

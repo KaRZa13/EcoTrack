@@ -166,30 +166,29 @@ app.post('/login', async (req, res) => {
   }
 });
 
-// app.post('/register', async (req, res) => {
-//   const { email, password } = req.body;
+app.post('/register', async (req, res) => {
+  const { name, email, password, company_code } = req.body;
 
-//   try {
-//     // Step 1: Create the user in auth
-//     const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-//       email,
-//       password
-//     });
+  if (!email || !password) {
+    return res.status(400).json({error:"Email and password are required."});}
 
-//     if (signUpError) {
-//       console.error("Sign Up Error:", signUpError); // Enhanced error logging
-//       return res.status(500).json({ error: signUpError.message });
-//     }
+  try {
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({email,password});
+    if (signUpError) {console.error("Sign Up Error:", signUpError);
+      return res.status(500).json({ error: signUpError.message });
+    }
+    const { data: profileData, error: profileError } = await supabase
+      .from('user_profiles')
+      .insert([{ id: signUpData.user.id, firstname: name, company_code: company_code }])
 
-//     console.log("User = ", signUpData.user);
-
-//     res.status(201).json({ message: "User registered successfully", user: signUpData.user });
-
-//   } catch (err) {
-//     console.error("Unexpected error:", err);
-//     res.status(500).json({ error: "Unexpected error occurred" });
-//   }
-// });
+    if (profileError) {console.error("Profile Creation Error:", profileError);
+      return res.status(500).json({ error: profileError.message });
+    }
+    res.status(201).json({message:"User registered successfully", user: signUpData.user});
+  } catch (err) {console.error("Unexpected error:", err);
+    res.status(500).json({error:"Unexpected error occurred"});
+  }
+});
 
 // Start the server
 app.listen(port, () => {

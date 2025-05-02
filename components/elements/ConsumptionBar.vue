@@ -13,10 +13,4 @@
 <script setup lang="ts">
 const progress = ref<number>(0)
 
-defineProps({
-  user: {
-    type: Object,
-    required: true,
-  },
-})
 </script>

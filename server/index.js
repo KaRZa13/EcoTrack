@@ -196,6 +196,22 @@ app.get('/externRanking', async (req, res) => {
   }
 });
 
+app.get('/categories', async (req, res) => {
+  try {
+    const { data, error } = await supabase.from('categories').select('*')
+
+    if (error || !data)
+      return res.status(500).json({ error: error?.message || 'Categories not found' });
+    res.status(200).json({ message: 'Categories fetched properly', categories: data });
+
+  } catch (err) {
+    console.error("Unexpected error:", err);
+    res.status(500).json({ error: 'Unexpected error occurred' });
+  }
+});
+
+
+
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {

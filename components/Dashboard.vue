@@ -37,7 +37,7 @@
 
         <!-- Consommation -->
         <div class="lg:w-1/2 h-full bg-card rounded-2xl">
-          <!-- <Consumption :user="user"/> -->
+          <Consumption :user="user"/>
         </div>
 
       </div>
@@ -57,10 +57,7 @@ import Consumption from './dashboard/Consumption.vue'
 import axios from 'axios';
 import type { Users } from '@/types/supabase'
 
-const router = useRouter()
 const client = useSupabaseClient<Users>()
-
-
 const user = ref<Users | null>(null)
 
 const fetchCurrentUserProfile = async (): Promise<void> => {

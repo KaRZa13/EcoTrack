@@ -38,7 +38,7 @@ const props = defineProps<{
 }>()
 
 const company = ref<Companies | null>(null)
-
+const supabase = useSupabaseClient()
 const client = useSupabaseClient<Users>()
 
 const fetchCurrentUserCompany = async (companyCode: string): Promise<void> => {
@@ -57,6 +57,7 @@ const fetchCurrentUserCompany = async (companyCode: string): Promise<void> => {
     console.error('Error fetching user profile:', error);
   }
 }
+
 
 watch(
   () => props.user,

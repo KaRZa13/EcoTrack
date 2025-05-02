@@ -7,6 +7,7 @@ Bienvenue sur la documentation de notre **tableau de bord** ! Ce document vous g
 Le tableau de bord est l'outil central du projet. C'est le composant qui est appelé dans l'index et qui apparaît dès lors que l'utilisateur est identifié.  
 Dans celui-ci, l'utilisateur peut visualiser toutes les données de l'application, ainsi que les différentes fonctionnalités disponibles.  
 
+![Texte alternatif](/documentation/images/dashboard.png)
 ### Sections du Tableau de Bord
 
 Le tableau regroupe plusieurs sections, chacune ayant une utilité différente que nous verrons dans leurs fichiers `.md` respectifs.

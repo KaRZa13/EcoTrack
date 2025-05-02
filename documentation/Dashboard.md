@@ -8,9 +8,18 @@ Le tableau de bord est l'outil central du projet. C'est le composant qui est app
 Dans celui-ci, l'utilisateur peut visualiser toutes les données de l'application, ainsi que les différentes fonctionnalités disponibles.  
 
 ![Texte alternatif](/documentation/images/dashboard.png)
-### Sections du Tableau de Bord
+
+## Composants du Tableau de Bord
 
 Le tableau regroupe plusieurs sections, chacune ayant une utilité différente que nous verrons dans leurs fichiers `.md` respectifs.
+1. [Sidebar](Sidebar.md)
+2. [Score](Score.md)
+3. [Tips](Tips.md)
+4. [Ranking](Ranking.md)
+5. [Graph](Graph.md)
+6. [Consumption](Consumption.md)
+
+---
 
 ### Responsivité
 

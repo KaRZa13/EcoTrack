@@ -2,20 +2,21 @@
 -- 
 
 ## Table des matières
-1. [Contexte](Ecotrack.md)
-2. [Fonctionnalités principales](#fonctionnalités-principales)
-3. [Sections du tableau de bord](#sections-du-tableau-de-bord)
-4. [Personnalisation](#personnalisation)
-5. [Dépannage](#dépannage)
+1. [Getting Started](#getting-started)
+2. [Contexte du Projet](/documentation/Ecotrack.md)
+3. [Tableau de Bord](/documentation/Dashboard.md)
+4. [Login](/documentation/Login.md)
+5. [Register](/documentation/Dashboard.md)
 6. [Conclusion](#conclusion)
 7. [FAQ](#faq)
 8. [Contact](#contact)
 9. [Annexes](#annexes)
 10. [Liens utiles](#liens-utiles)
 
+---
 
 
-## 📦 Getting started
+## Getting started
 
 1. Clonez le dépôt :
 

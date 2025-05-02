@@ -80,31 +80,3 @@ Ce projet a été une opportunité d'apprendre :
 L'interface utilisateur a été conçue avec un fort contraste pour garantir une bonne visibilité, même pour les utilisateurs ayant des déficiences visuelles.  
 L'objectif est de rendre l'application accessible à tous.
 
-## 📦 Installation et Lancement
-
-1. Clonez le dépôt :
-
-```bash
-git clone <repository-url>
-```
-
-2. Installez les dépendances :
-
-```bash
-cd EcoTrack
-npm install
-```
-
-3. Lancez le projet en mode développement :
-
-```bash
-npm run dev
-```
-
-4. Lancez le serveur nodejs :
-
-```bash
-npm run dev:server
-```
-
-

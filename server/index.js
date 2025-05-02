@@ -224,7 +224,9 @@ app.post('/login', async (req, res) => {
 
     if (profileError)
       return res.status(500).json({ error: profileError.message });
+    console.log('Token de session:', data.session.access_token)
     res.status(200).json({ message: "Login successful", user: userProfile });
+    router.push('/');
 
   } catch (err) {
     console.error("Unexpected error:", err);

@@ -1,4 +1,5 @@
 # Dashboard Documentation
+[(Revenir à la page d'accueil)](../README.md)
 
 Bienvenue sur la documentation de notre **tableau de bord** ! Ce document vous guidera à travers les différentes sections et fonctionnalités du tableau de bord, afin que vous puissiez comprendre ses spécificités.
 

@@ -1,4 +1,5 @@
 # Consumption Documentation
+[(Revenir à la page d'accueil)](../README.md)
 
 Bienvenue sur la documentation du composant **Consumption** ! Ce document détaille les fonctionnalités, les props, et le comportement du composant.
 

@@ -1,4 +1,5 @@
 # Register Documentation
+[(Revenir à la page d'accueil)](../README.md)
 
 Bienvenue sur la documentation de notre **page d'inscription** ! Ce document vous guidera à travers les différentes fonctionnalités de la page d'inscription.
 

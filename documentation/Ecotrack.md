@@ -1,4 +1,5 @@
 # EcoTrack - Suivi de l'Empreinte Carbone des Employés
+[(Revenir à la page d'accueil)](../README.md)
 
 ## 🌍 Contexte et Principe
 

@@ -1,4 +1,5 @@
 # Login Documentation
+[(Revenir à la page d'accueil)](../README.md)
 
 Bienvenue sur la documentation de notre **page de connexion** ! Ce document vous guidera à travers les différentes fonctionnalités de la page de connexion.
 

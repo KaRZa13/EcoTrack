@@ -10,8 +10,8 @@ Le composant `Ranking` affiche un classement des utilisateurs internes d'une ent
 
 ---
 <div style="display: flex; justify-content: space-around; align-items: center;">
-  <img src="images/RankingIntern.png" alt="Desktop View" style="width: 45%; margin-right: 10px;" />
-  <img src="images/RankingExtern.png" alt="Mobile View" style="width: 45%;" />
+  <img src="images/rankingIntern.png" alt="Desktop View" style="width: 45%; margin-right: 10px;" />
+  <img src="images/rankingExtern.png" alt="Mobile View" style="width: 45%;" />
 </div>
 
 ## Fonctionnalités

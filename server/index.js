@@ -210,29 +210,27 @@ app.get('/categories', async (req, res) => {
   }
 });
 
+// app.post('/login', async (req, res) => {
+//   const { email, password } = req.body;
+//   try {
+//     const { data, error } =
+//       await supabase.auth.signInWithPassword({ email: email, password: password });
 
+//     const { user } = data;
+//     const { data: userProfile, error: profileError } =
+//       await supabase.from('user_profiles').select('*').eq('id', user.id).single();
 
-app.post('/login', async (req, res) => {
-  const { email, password } = req.body;
-  try {
-    const { data, error } =
-      await supabase.auth.signInWithPassword({ email: email, password: password });
+//     if (profileError)
+//       return res.status(500).json({ error: profileError.message });
+//     console.log('Token de session:', data.session.access_token)
+//     res.status(200).json({ message: "Login successful", user: userProfile });
+//     router.push('/');
 
-    const { user } = data;
-    const { data: userProfile, error: profileError } =
-      await supabase.from('user_profiles').select('*').eq('id', user.id).single();
-
-    if (profileError)
-      return res.status(500).json({ error: profileError.message });
-    console.log('Token de session:', data.session.access_token)
-    res.status(200).json({ message: "Login successful", user: userProfile });
-    router.push('/');
-
-  } catch (err) {
-    console.error("Unexpected error:", err);
-    res.status(500).json({ error: "Unexpected error occurred" });
-  }
-});
+//   } catch (err) {
+//     console.error("Unexpected error:", err);
+//     res.status(500).json({ error: "Unexpected error occurred" });
+//   }
+// });
 
 app.post('/register', async (req, res) => {
   const { name, email, password, company_code } = req.body;

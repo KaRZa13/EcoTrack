@@ -80,7 +80,6 @@ const fetchCurrentUserInternRanking = async (companyCode: string): Promise<void>
     const response = await axios.get('http://localhost:3010/internRanking', { headers: { 'company_code': companyCode } });
     if (response.data)
       users.value = response.data.ranking;
-      console.log("🚀 ~ fetchCurrentUserInternRanking ~ users.value:", users.value)
 
   } catch (error) {
     console.error('Error fetching user profile:', error);
@@ -92,7 +91,6 @@ const fetchCurrentExternCompanyRanking = async (): Promise<void> => {
     const response = await axios.get('http://localhost:3010/externRanking');
     if (response.data)
       companies.value = response.data.ranking;
-      console.log("🚀 ~ fetchCurrentExternCompanyRanking ~ companies.value:", companies.value)
     
 
   } catch (error) {

@@ -2,7 +2,7 @@
     <div class="w-full h-full p-4 bg-gray-50">
         <div class="flex flex-col gap-2 xl:gap-6 justify-center max-w-2xl mx-auto">
             <router-link to="/"
-                class="self-start mb-2 px-4 py-2 bg-gray-200 text-gray-700 rounded-lg font-semibold hover:bg-gray-300 transition flex items-center gap-2">
+                class="self-start mb-2 px-4 py-2 bg-[#024533] text-[#FFFD99] rounded-lg font-semibold hover:bg-[#1b5e20] transition flex items-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd"
                         d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
@@ -11,7 +11,7 @@
                 Retour à l'accueil
             </router-link>
 
-            <h2 class="text-[#2e7d32] text-4xl font-black">Calculez votre empreinte carbone</h2>
+            <h2 class="text-[#024533] text-4xl font-black">Calculez votre empreinte carbone</h2>
 
             <div class="flex justify-center w-full my-6">
                 <nav class="flex items-center justify-center w-full max-w-3xl">
@@ -21,20 +21,20 @@
                         <div class="flex flex-col items-center">
                             <div :class="[
                                 'rounded-full w-8 h-8 flex items-center justify-center text-sm font-bold',
-                                step >= index ? 'bg-[#2e7d32] text-white' : 'bg-gray-200 text-gray-500'
+                                step >= index ? 'bg-[#024533] text-white' : 'bg-gray-200 text-gray-500'
                             ]">
                                 {{ index + 1 }}
                             </div>
                             <span :class="[
                                 'text-xs mt-1 font-medium',
-                                step >= index ? 'text-[#2e7d32]' : 'text-gray-400'
+                                step >= index ? 'text-[#024533]' : 'text-gray-400'
                             ]">
                                 {{ category }}
                             </span>
                         </div>
                         <div v-if="index < 5" :class="[
                             'h-0.5 w-8 mx-1',
-                            step > index ? 'bg-[#2e7d32]' : 'bg-gray-200'
+                            step > index ? 'bg-[#024533]' : 'bg-gray-200'
                         ]"></div>
                     </div>
                 </nav>
@@ -43,7 +43,7 @@
             <form @submit.prevent="handleSubmit" class="w-full bg-white p-6 rounded-lg shadow-md">
                 <div class="mb-6">
                     <div v-for="question in questions" :key="question.id" class="mb-4">
-                        <label :for="question.id" class="block text-gray-800 text-xl font-semibold mb-2">{{
+                        <label :for="question.id" class="block text-[#5E2BFF] text-xl font-semibold mb-2">{{
                             question.content }}</label>
 
                         <select :id="question.id" v-model="form[question.id]"
@@ -65,13 +65,13 @@
                     </button>
 
                     <button type="button"
-                        class="px-6 py-3 bg-[#2e7d32] text-white rounded-lg font-semibold hover:bg-[#1b5e20] transition ml-auto"
+                        class="px-6 py-3 bg-[#024533] text-white rounded-lg font-semibold hover:bg-[#1b5e20] transition ml-auto"
                         @click="nextStep" v-if="step < 5">
                         Suivant
                     </button>
 
                     <button type="submit"
-                        class="px-8 py-3 bg-gradient-to-r from-[#2e7d32] to-[#4caf50] text-white rounded-lg font-semibold hover:from-[#1b5e20] hover:to-[#2e7d32] transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#2e7d32] focus:ring-opacity-50 flex items-center justify-center space-x-2 w-full"
+                        class="px-8 py-3 bg-gradient-to-r from-[#024533] to-[#4caf50] text-white rounded-lg font-semibold hover:from-[#1b5e20] hover:to-[#2e7d32] transition-all duration-300 shadow-md hover:shadow-lg transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-[#2e7d32] focus:ring-opacity-50 flex items-center justify-center space-x-2 w-full"
                         v-if="step === 5">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd"

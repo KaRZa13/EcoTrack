@@ -37,7 +37,6 @@ const props = defineProps<{
   user: Users | null
 }>()
 
-const router = useRouter()
 const company = ref<Companies | null>(null)
 const supabase = useSupabaseClient()
 const client = useSupabaseClient<Users>()

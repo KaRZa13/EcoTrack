@@ -8,6 +8,7 @@ La page de connexion est la page par défaut affichée pour tout utilisateur non
 
 ---
 
+![Texte alternatif](/documentation/images/login.png)
 ## Fonctionnalités de la Page de Connexion
 
 ### Formulaire de Connexion
@@ -17,11 +18,18 @@ Le formulaire de connexion est un formulaire classique utilisant `@submit.preven
 - Vérifier que les informations saisies sont au **format attendu**.
 - Vérifier que les champs **ne sont pas vides**, sans envoyer immédiatement le formulaire.
 
-Lorsque le formulaire est correctement rempli, il appelle la fonction `signIn()`, qui va envoyer les informations à la route `/login` de notre middleware.
+Voici un exemple du type de données que nous envoyons à Supabase : 
+```json
+{
+    "email":"john.doe@gmail.com",
+    "password":"johndoe",
+}
+```	
+Lorsque le formulaire est correctement rempli, il appelle la fonction `signIn()`.
 
 ### Authentification et Redirection
-
-Suite à la réponse du middleware, on fait les étapes suivantes :
+Nous utilisons l'authentification de Supabase, qui est géré côté client, l'authentification est effectuée via la méthode `signInWithPassword()` de Supabase. Cette méthode prend en paramètre un objet contenant l'email et le mot de passe de l'utilisateur.
+Elle vient stocker l'access token permettant de garder l'utilisateur connecté et de le faire bypass le redirect.
 
 1. **Validation de la connexion** : Si les informations sont correctes, l'utilisateur est authentifié.
 2. **Redirection** : Si l'authentification réussit, l'utilisateur est redirigé vers le tableau de bord.
@@ -52,3 +60,4 @@ export default defineNuxtConfig({
     },
     [...]
 })
+

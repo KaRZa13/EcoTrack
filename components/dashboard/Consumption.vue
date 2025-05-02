@@ -26,7 +26,6 @@ const categories = ref<Categories[]>([])
     const response = await axios.get('http://localhost:3010/categories');
     if (response.data) {
       categories.value = response.data.categories;
-      console.log("🚀 ~ fetchCategories ~ categories:", categories.value)
     }
 
   } catch (error) {

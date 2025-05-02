@@ -100,7 +100,6 @@
 import AddPerson from '../components/svg/AddPerson.vue'
 import axios from 'axios'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
 
 const name = ref<string>("")
 const email = ref<string>("")
@@ -110,7 +109,6 @@ const confirmPassword = ref<string>("")
 
 const errorMsg = ref<string>("")
 const successMsg = ref<string>("")
-const router = useRouter()
 
 
 const signUp = async () => {

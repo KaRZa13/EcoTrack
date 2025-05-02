@@ -9,5 +9,5 @@ Le schéma de base de données est autogénéré par Supabase. Il est principale
 Il nous a permis de visualiser dynamiquement la base de données tout au long du projet.
 
 ---
-![MCD](/documentation/images/schemabdd.png)
+![SchemaBDD](/documentation/images/schemabdd.png)
 

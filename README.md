@@ -5,14 +5,12 @@
 1. [Getting Started](#getting-started)
 2. [Contexte du Projet](/documentation/Ecotrack.md)
 3. [Choix des Technos](/documentation/Technos.md)
-3. [Tableau de Bord](/documentation/Dashboard.md)
-4. [Login](/documentation/Login.md)
-5. [Register](/documentation/Register.md)
-6. [MCD](/documentation/mcd.md)
-7. [Schéma BDD](/documentation/Schemabdd.md)
-8. [Contact](#contact)
-9. [Annexes](#annexes)
-10. [Liens utiles](#liens-utiles)
+4. [Tableau de Bord](/documentation/Dashboard.md)
+5. [Middleware Node](/documentation/Middleware.md)
+6. [Login](/documentation/Login.md)
+7. [Register](/documentation/Register.md)
+8. [MCD](/documentation/mcd.md)
+9. [Schéma BDD](/documentation/Schemabdd.md)
 
 
 ---

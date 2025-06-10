@@ -79,6 +79,7 @@ const fetchCurrentUserProfile = async (session: any): Promise<void> => {
 }
 
 onMounted(async () => {
+  console.log("🚀 ~ onMounted ~ client:", user)
   if (!process.client) return
 
   // 1. Essaye de récupérer la session immédiatement

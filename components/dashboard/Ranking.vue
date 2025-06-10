@@ -77,7 +77,7 @@ const props = defineProps<{
 
 const fetchCurrentUserInternRanking = async (companyCode: string): Promise<void> => {
   try {
-    const response = await axios.get('http://10.61.11.244:3010/internRanking', { headers: { 'company_code': companyCode } });
+    const response = await axios.get('http://localhost:3010/internRanking', { headers: { 'company_code': companyCode } });
     if (response.data)
       users.value = response.data.ranking;
 
@@ -88,7 +88,7 @@ const fetchCurrentUserInternRanking = async (companyCode: string): Promise<void>
 
 const fetchCurrentExternCompanyRanking = async (): Promise<void> => {
   try {
-    const response = await axios.get('http://10.61.11.244:3010/externRanking');
+    const response = await axios.get('http://localhost:3010/externRanking');
     if (response.data)
       companies.value = response.data.ranking;
     

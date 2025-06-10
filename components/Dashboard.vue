@@ -69,7 +69,7 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
   const userId = userAuth.user.id
 
   try {
-    const response = await axios.get('http://localhost:3010/user', { headers: { 'userid': userId } });
+    const response = await axios.get('http://10.61.11.244:3010/user', { headers: { 'userid': userId } });
 
     if (response.data)
       user.value = response.data.user;

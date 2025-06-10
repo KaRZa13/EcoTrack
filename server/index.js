@@ -20,11 +20,26 @@ app.use(express.json());
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 require('dotenv').config();
-const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_KEY);
+const supabase = createClient(
+  process.env.SUPABASE_URL, 
+  process.env.SUPABASE_KEY,
+  {
+    auth: {
+      // Server-side configuration
+      persistSession: false, // Don't persist on server side
+      autoRefreshToken: false, // Don't auto-refresh on server
+      detectSessionInUrl: false, // Not needed on server
+      flowType: 'pkce'
+    },
+    // Add global configuration
+    global: {
+      headers: {
+        'X-Client-Info': 'supabase-js-node'
+      }
+    }
+  }
+);
 
-// const { data, error } = await supabase
-// .from('user')
-// .insert([{ name, email }]);
 app.get('/user', async (req, res) => {
   try {
     const userId = req.headers['userid'];

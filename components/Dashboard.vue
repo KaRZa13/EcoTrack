@@ -67,15 +67,20 @@ const fetchCurrentUserProfile = async (session: any): Promise<void> => {
   }
   const userId = session.user.id
   try {
-    const response = await axios.get('http://10.61.11.243:3010/user', {
-      headers: { 'userid': userId }
-    })
-    if (response.data) {
-      user.value = response.data.user
-      console.log('User profile fetched:', user.value)
+    // Requête directe à Supabase
+    const { data, error } = await client
+      .from('users')
+      .select('*')
+      .eq('id', userId)
+      .single()
+
+    if (error) {
+      throw error
     }
+    user.value = data
+    console.log('User profile fetched from Supabase:', user.value)
   } catch (error) {
-    console.error('Error fetching user profile:', error)
+    console.error('Error fetching user profile from Supabase:', error)
   }
 }
 

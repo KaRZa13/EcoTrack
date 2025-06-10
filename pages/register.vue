@@ -118,7 +118,7 @@ const signUp = async () => {
   }
 
   try {
-    const response = await axios.post('http://localhost:3010/register', {
+    const response = await axios.post('http://10.61.11.243:3010/register', {
       name: name.value,
       email: email.value,
       password: password.value,

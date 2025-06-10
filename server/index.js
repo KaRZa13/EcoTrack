@@ -273,5 +273,5 @@ app.post('/register', async (req, res) => {
 
 // Start the server
 app.listen(port, () => {
-  console.log(`The server is running on http://localhost:${port}`);
+  console.log(`The server is running on http://10.61.11.244:${port}`);
 });

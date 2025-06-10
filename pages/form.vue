@@ -117,7 +117,7 @@ export default defineComponent({
 
         const fetchCategory = async (category: string): Promise<void> => {
             try {
-                const response = await axios.get('http://localhost:3010/form', {
+                const response = await axios.get('http://10.61.11.244:3010/form', {
                     headers: { 'category': category }
                 })
                 if (response.data) {
@@ -172,7 +172,7 @@ export default defineComponent({
             }
 
             try {
-                await axios.post('http://localhost:3010/form', payload)
+                await axios.post('http://10.61.11.244:3010/form', payload)
                 console.log('Form submitted successfully')
                 router.push('/')
             } catch (error) {

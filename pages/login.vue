@@ -48,22 +48,22 @@ const client = useSupabaseClient()
 
 const signIn = async () => {
   try {
-    const { error } = await client.auth.signInWithPassword({
+    const { data, error } = await client.auth.signInWithPassword({
       email: email.value,
       password: password.value,
     });
 
     if (error) {
       errorMsg.value = error.message;
+      return;
+    }
+
+    // La session est généralement dans data.session
+    if (data && data.session) {
+      console.log("🚀 ~ signIn ~ session:", data.session)
+      router.push("/");
     } else {
-      // Attendez que la session soit prête
-      const { data: session } = await client.auth.getSession();
-      if (session) {
-        console.log("🚀 ~ signIn ~ session:", session)
-        router.push("/");
-      } else {
-        errorMsg.value = "Session not established";
-      }
+      errorMsg.value = "Session not established";
     }
   } catch (error) {
     errorMsg.value = "An error occurred during sign-in";

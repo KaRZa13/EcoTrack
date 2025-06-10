@@ -4,7 +4,9 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev --host",
-    "dev:server": "bun server/index.js --host",
+
+
+    "dev:server": "bun server/index.js",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"

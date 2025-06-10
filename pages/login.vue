@@ -59,7 +59,7 @@ const signIn = async () => {
       errorMsg.value = error.message;
     } else {
       // Attendez que la session soit prête
-      const { data: session } = await client.auth.getSession();
+      const { data: session } = await client.auth.getUser();
       if (session) {
         console.log("🚀 ~ signIn ~ session:", session)
         router.push("/");

@@ -79,7 +79,7 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
   }
 }
 
-onMounted(() => {
+onMounted(async () => {
   fetchCurrentUserProfile()
 })
 </script>

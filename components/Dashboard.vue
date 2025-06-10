@@ -72,6 +72,7 @@ const fetchCurrentUserProfile = async (session: any): Promise<void> => {
     })
     if (response.data) {
       user.value = response.data.user
+      console.log('User profile fetched:', user.value)
     }
   } catch (error) {
     console.error('Error fetching user profile:', error)
@@ -79,7 +80,6 @@ const fetchCurrentUserProfile = async (session: any): Promise<void> => {
 }
 
 onMounted(async () => {
-  console.log("🚀 ~ onMounted ~ client:", client)
   if (!process.client) return
 
   // 1. Essaye de récupérer la session immédiatement

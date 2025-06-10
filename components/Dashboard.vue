@@ -54,7 +54,7 @@ import Tips from './dashboard/Tips.vue'
 import Ranking from './dashboard/Ranking.vue'
 import Graph from './dashboard/Graph.vue'
 import Consumption from './dashboard/Consumption.vue'
-import axios from 'axios';
+import axios from 'axios'
 import type { Users } from '@/types/supabase'
 
 const client = useSupabaseClient<Users>()
@@ -69,7 +69,7 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
   const userId = userAuth.user.id
 
   try {
-    const response = await axios.get('http://localhost:3010/user', { headers: { 'userid': userId } });
+    const response = await axios.get('http://10.61.11.243:3010/user', { headers: { 'userid': userId } });
 
     if (response.data)
       user.value = response.data.user;

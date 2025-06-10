@@ -26,7 +26,7 @@ const isLoading = ref(true)
 
 const fetchTips = async (): Promise<void> => {
   try {
-    const response = await axios.get('http://localhost:3010/tips');
+    const response = await axios.get('http://10.61.11.243:3010/tips');
 
     if (response.data) {
       random_tips.value = response.data.tips;

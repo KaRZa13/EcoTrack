@@ -61,23 +61,32 @@ const client = useSupabaseClient<Users>()
 const user = ref<Users | null>(null)
 
 const fetchCurrentUserProfile = async (): Promise<void> => {
-  const { data: userAuth, error: userError } = await client.auth.getUser()
-
-  if (userError || !userAuth?.user)
-    return console.error('Error fetching auth user:', userError)
-
-  const userId = userAuth.user.id
-
   try {
-    const response = await axios.get('http://10.61.11.243:3010/user', { headers: { 'userid': userId } });
+    // Vérifiez d'abord si une session valide est établie
+    const { data: { session }, error: sessionError } = await client.auth.getSession();
 
-    if (response.data)
-      user.value = response.data.user;
+    if (sessionError || !session) {
+      console.error('Error fetching session:', sessionError);
+      return;
+    }
 
-  } catch (error) {
-    console.error('Error fetching user profile:', error);
+    const userId = session.user.id;
+
+    try {
+      const response = await axios.get('http://10.61.11.243:3010/user', {
+        headers: { 'userid': userId }
+      });
+
+      if (response.data) {
+        user.value = response.data.user;
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+    }
+  } catch (userError) {
+    console.error('Error fetching auth user:', userError);
   }
-}
+};
 
 onMounted(async () => {
   fetchCurrentUserProfile()

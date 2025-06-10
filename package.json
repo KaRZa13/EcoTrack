@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "nuxt build",
-    "dev": "nuxt dev",
+    "dev": "nuxt dev --host",
     "dev:server": "bun server/index.js",
     "generate": "nuxt generate",
     "preview": "nuxt preview",

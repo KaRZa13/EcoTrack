@@ -55,23 +55,18 @@ const signIn = async () => {
 
     if (error) {
       errorMsg.value = error.message;
-      return;
-    }
-
-    // Écoutez les changements d'état d'authentification
-    const { data: { subscription } } = client.auth.onAuthStateChange((event, session) => {
-      if (event === 'SIGNED_IN') {
-        console.log("User signed in:", session);
+    } else {
+      // Attendez que la session soit prête
+      const { data: session } = await client.auth.getSession();
+      if (session) {
+        console.log("🚀 ~ signIn ~ session:", session)
         router.push("/");
+      } else {
+        errorMsg.value = "Session not established";
       }
-    });
-
-    // Optionnel : Annulez l'abonnement après utilisation
-    subscription.unsubscribe();
-
+    }
   } catch (error) {
     errorMsg.value = "An error occurred during sign-in";
   }
-};
-
+}
 </script>

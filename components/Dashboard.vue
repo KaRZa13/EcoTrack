@@ -60,37 +60,38 @@ import type { Users } from '@/types/supabase'
 const client = useSupabaseClient<Users>()
 const user = ref<Users | null>(null)
 
-const fetchCurrentUserProfile = async (): Promise<void> => {
-  try {
-    // Vérifiez d'abord si une session valide est établie
-    const { data: { session }, error: sessionError } = await client.auth.getSession();
-
-    if (sessionError || !session) {
-      console.error('Error fetching session:', sessionError);
-      return;
-    }
-
-    const userId = session.user.id;
-
-    try {
-      const response = await axios.get('http://10.61.11.243:3010/user', {
-        headers: { 'userid': userId }
-      });
-
-      if (response.data) {
-        user.value = response.data.user;
-      }
-    } catch (error) {
-      console.error('Error fetching user profile:', error);
-    }
-  } catch (userError) {
-    console.error('Error fetching auth user:', userError);
+const fetchCurrentUserProfile = async (session: any): Promise<void> => {
+  if (!session || !session.user) {
+    console.error('No session or user found')
+    return
   }
-};
+  const userId = session.user.id
+  try {
+    const response = await axios.get('http://10.61.11.243:3010/user', {
+      headers: { 'userid': userId }
+    })
+    if (response.data) {
+      user.value = response.data.user
+    }
+  } catch (error) {
+    console.error('Error fetching user profile:', error)
+  }
+}
 
 onMounted(async () => {
-  if (process.client) {
-    await fetchCurrentUserProfile()
+  if (!process.client) return
+
+  // 1. Essaye de récupérer la session immédiatement
+  const { data: { session } } = await client.auth.getSession()
+  if (session) {
+    await fetchCurrentUserProfile(session)
   }
+
+  // 2. Écoute les changements d'auth (utile après login ou refresh)
+  client.auth.onAuthStateChange(async (_event, session) => {
+    if (session) {
+      await fetchCurrentUserProfile(session)
+    }
+  })
 })
 </script>

@@ -58,7 +58,6 @@ const signIn = async () => {
       return;
     }
 
-    // La session est généralement dans data.session
     if (data && data.session) {
       console.log("🚀 ~ signIn ~ session:", data.session)
       router.push("/");

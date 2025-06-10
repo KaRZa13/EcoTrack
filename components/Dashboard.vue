@@ -89,6 +89,8 @@ const fetchCurrentUserProfile = async (): Promise<void> => {
 };
 
 onMounted(async () => {
-  fetchCurrentUserProfile()
+  if (process.client) {
+    await fetchCurrentUserProfile()
+  }
 })
 </script>

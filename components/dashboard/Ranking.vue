@@ -66,6 +66,7 @@ import axios from 'axios'
 
 const selectedFilter = ref<string>('internal')
 
+const client = useSupabaseClient()
 
 const users = ref<Users[]>([])
 const companies = ref<Companies[]>([])

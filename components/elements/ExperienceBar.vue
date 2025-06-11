@@ -1,8 +1,8 @@
 <template>
-  <div class="w-full mx-auto px-4 py-2">
-    <div class="mb-4 flex justify-between items-center">
-      <span class="text-sm font-medium text-gray-700">Level {{ props.user?.level ?? 'N/A' }}</span>
-      <span class="text-sm font-medium text-gray-700">Level {{ props.user?.level ? props.user.level + 1 : 'N/A' }}
+  <div class="w-full mx-auto px-4 py-1">
+    <div class="mb-2 3xl:mb-4 flex justify-between items-center">
+      <span class="text-xs font-medium text-gray-700">Level {{ props.user?.level ?? 'N/A' }}</span>
+      <span class="text-xs font-medium text-gray-700">Level {{ props.user?.level ? props.user.level + 1 : 'N/A' }}
       </span>
     </div>
     <div class="w-full bg-tertiary rounded-full h-6 overflow-hidden">

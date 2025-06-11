@@ -1,32 +1,32 @@
 <template>
-  <div class="w-full h-full p-4">
+  <div class="w-full h-full p-4 overflow-hidden">
 
-    <div class="flex flex-col gap-2 lg:gap-4 xl:gap-6 justify-center">
-      <h2 class="text-primary text-4xl font-black">Carbon score</h2>
+    <div class="flex flex-col gap-2 lg:gap-2 3xl:gap-6 justify-center">
+      <h2 class="text-primary text-2xl 3xl:text-4xl font-black">Carbon score</h2>
       <label class="text-primary text-6xl font-black"> {{ props.user?.currentScore }}</label>
-      <p class="text-black1 text-xl font-semibold">Corresponds to the number of tonnes of CO<sub>2</sub> emitted per
+      <p class="text-black1 text-base 3xl:text-xl font-semibold">Corresponds to the number of tonnes of CO<sub>2</sub> emitted per
         year</p>
     </div>
 
-    <hr class="bg-primary h-1 mx-8 my-2 lg:my-4 rounded-full" />
+    <hr class="bg-primary h-1 mx-8 my-2 3xl:my-6 rounded-full" />
 
     <ExperienceBar :user="user" />
 
-    <p class="text-black1 text-xs xl:text-sm 2xl:text-base font-semibold">You need {{ props.user?.nextLevel }} xp points
+    <p class="text-black1 text-xs 3xl:text-base font-semibold">You need {{ props.user?.nextLevel }} xp points
       before the next level, you can do it !</p>
 
-    <hr class="bg-primary h-1 mx-8 my-2 lg:my-6 rounded-full" />
+    <hr class="bg-primary h-1 mx-8 my-2 3xl:my-6 rounded-full" />
 
     <div class="flex flex-col gap-2 justify-center text-sm text-black1">
 
-      <p v-if="isLoading" class="text-sm xl:text-lg 2xl:text-xl text-black1 font-semibold">Loading history...</p>
-      <p v-else-if="history.length > 0" class="text-sm xl:text-lg 2xl:text-xl text-black1 font-semibold">Last
+      <p v-if="isLoading" class="text-sm 3xl:text-xl text-black1 font-semibold">Loading history...</p>
+      <p v-else-if="history.length > 0" class="text-sm 3xl:text-xl text-black1 font-semibold">Last
         questionnaire on {{ history[0]?.historyDate }}</p>
-      <p v-else class="text-sm xl:text-lg 2xl:text-xl font-semibold">No questionnaire data available</p>
-      <p v-if="isLoading" class="text-sm xl:text-lg 2xl:text-xl text-black1 font-semibold">Loading history...</p>
-      <p v-else-if="history.length > 0" class="text-sm xl:text-lg 2xl:text-xl text-black1 font-semibold">Number of
+      <p v-else class="text-sm 3xl:text-xl font-semibold">No questionnaire data available</p>
+      <p v-if="isLoading" class="text-sm 3xl:text-xl text-black1 font-semibold">Loading history...</p>
+      <p v-else-if="history.length > 0" class="text-sm 3xl:text-xl text-black1 font-semibold">Number of
         questionnaires completed : {{ history?.length }}</p>
-      <p v-else class="text-sm xl:text-lg 2xl:text-xl text-black1 font-semibold">No questionnaire data available</p>
+      <p v-else class="text-sm 3xl:text-xl text-black1 font-semibold">No questionnaire data available</p>
     </div>
   </div>
 </template>

@@ -54,50 +54,32 @@ import Tips from './dashboard/Tips.vue'
 import Ranking from './dashboard/Ranking.vue'
 import Graph from './dashboard/Graph.vue'
 import Consumption from './dashboard/Consumption.vue'
-import axios from 'axios'
+import axios from 'axios';
 import type { Users } from '@/types/supabase'
 
 const client = useSupabaseClient<Users>()
 const user = ref<Users | null>(null)
 
-const fetchCurrentUserProfile = async (session: any): Promise<void> => {
-  if (!session || !session.user) {
-    console.error('No session or user found')
-    return
-  }
-  const userId = session.user.id
-  try {
-    // Requête directe à Supabase
-    const { data, error } = await client
-      .from('users')
-      .select('*')
-      .eq('id', userId)
-      .single()
+const fetchCurrentUserProfile = async (): Promise<void> => {
+  const { data: userAuth, error: userError } = await client.auth.getUser()
 
-    if (error) {
-      throw error
-    }
-    user.value = data
-    console.log('User profile fetched from Supabase:', user.value)
+  if (userError || !userAuth?.user)
+    return console.error('Error fetching auth user:', userError)
+
+  const userId = userAuth.user.id
+
+  try {
+    const response = await axios.get('http://localhost:3010/user', { headers: { 'userid': userId } });
+
+    if (response.data)
+      user.value = response.data.user;
+
   } catch (error) {
-    console.error('Error fetching user profile from Supabase:', error)
+    console.error('Error fetching user profile:', error);
   }
 }
 
-onMounted(async () => {
-  if (!process.client) return
-
-  // 1. Essaye de récupérer la session immédiatement
-  const { data: { session } } = await client.auth.getSession()
-  if (session) {
-    await fetchCurrentUserProfile(session)
-  }
-
-  // 2. Écoute les changements d'auth (utile après login ou refresh)
-  client.auth.onAuthStateChange(async (_event, session) => {
-    if (session) {
-      await fetchCurrentUserProfile(session)
-    }
-  })
+onMounted(() => {
+  fetchCurrentUserProfile()
 })
 </script>

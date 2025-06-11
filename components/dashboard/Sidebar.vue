@@ -48,7 +48,7 @@ const fetchCurrentUserCompany = async (companyCode: string): Promise<void> => {
     return console.error('Error fetching auth user:', userError)
 
   try {
-    const response = await axios.get('http://10.61.11.243:3010/company', { headers: { 'company_code': companyCode } });
+    const response = await axios.get('http://localhost:3010/company', { headers: { 'company_code': companyCode } });
 
     if (response.data)
       company.value = response.data.company;

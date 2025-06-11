@@ -54,7 +54,7 @@ const fetchCurrentUserHistory = async (currentUserId: string): Promise<void> => 
     return console.error('Error fetching auth user:', userError);
   }
   try {
-    const response = await axios.get('http://10.61.11.243:3010/history', { headers: { "userid": currentUserId } });
+    const response = await axios.get('http://localhost:3010/history', { headers: { "userid": currentUserId } });
 
     if (response.data)
       history.value = response.data.history;
